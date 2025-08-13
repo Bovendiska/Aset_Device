@@ -18,8 +18,6 @@ def submit_gsheet(data):
             st.secrets.to_dict(), # Mengubah semua secrets menjadi dictionary
             scopes=SCOPE
         )
-        creds = Credentials.from_service_account_info(creds_dict, scopes =SCOPE)
-
         # Otorisasi gspead
         client = gspread.authorize(creds)
 
