@@ -76,7 +76,7 @@ if submit:
             'Device':device_name,
             'PIC' : pic_name,
             'Jenis Device': device_type,
-            'Status': status,
+            'Status': st.session_state.status_aset,
             'Letak Aset' : letak_aset,
             'Keterangan': keterangan
         }
