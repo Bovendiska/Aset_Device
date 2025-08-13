@@ -56,10 +56,17 @@ st.header('Detail Aset')
 device_number = st.text_input('Nomor Device (Device Lama)', help = 'Dilihat pada barcode Aset Device = SFL/../..')
 device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
 pic_name = st.text_input('Nama PIC*', help = 'Nama Pengisi Form')
-pic_num = st.text_input('Nomor PIC*', help = 'Nama Pengisi Form')
+pic_num = st.text_input('Nomor Telpon*', help = 'Nama Pengisi Form')
 new_type = st.selectbox('Jenis Device Lama', ['PC','Notebook'])
 old_type = st.selectbox('Jenis Device Baru', ['PC','Notebook'])
-own_dev_old = st.text_input('Pemegang Device Lama')
+own_dev_old = st.selectbox('Status Device Lama',['Dikembalikan ke IT','Dipinjam'])
+
+if own_dev_old == 'Dipinjam':
+    st.text_input('Nama Peminjam')
+    st.text_input('Departemen')
+    st.text_input('Nomor Telpon Peminjam')
+    st.text_area('Alasan Peminjaman')
+
 own_dev_new = st.text_input('Pemegang Device Baru')  
 keterangan = st.text_area("Keterangan Tambahan")
 
