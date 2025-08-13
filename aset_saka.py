@@ -45,7 +45,7 @@ def submit_gsheet(data):
 st.set_page_config(layout = 'centered', page_title='Form Aset IT')
 
 st.title('📝 Formulir Input Aset IT')
-st.write('Data dari formulir ini akan langsung tersimpan di Google Sheets.')
+st.write('Untuk mengetahui detail aset serta kebedaan aset device.')
 st.markdown("-------")
 
 st.header('Detail Aset')
@@ -59,7 +59,7 @@ status = st.selectbox('Status Aset',['Sudah Diambil IT','Belum Diambil IT'], key
 if st.session_state.status_aset == 'Belum Diambil IT':
     letak_aset = st.text_input('Dimana Letak Aset Tersebut?')
 else:
-    letak_aset = ''
+    letak_aset = st.text_input('Di Terima oleh siapa?')
     
 keterangan = st.text_area("Keterangan Tambahan")
 
