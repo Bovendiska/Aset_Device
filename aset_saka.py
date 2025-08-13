@@ -51,7 +51,7 @@ st.markdown("-------")
 
 st.header('Detail Aset')
 
-device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device')
+device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device = SFL/../..')
 device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
 pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
 device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
