@@ -28,6 +28,7 @@ def submit_gsheet(data):
         worksheet = gsheet.get_worksheet(0)
 
         new_row = [
+            data.get('Nomor Aset',''),
             data.get('Device',''),
             data.get('PIC',''),
             data.get('Jenis Device',''),
@@ -50,6 +51,7 @@ st.markdown("-------")
 
 st.header('Detail Aset')
 
+device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device')
 device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
 pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
 device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
@@ -72,6 +74,7 @@ if submit:
         st.warning('Mohon isi field yang ditandai (*)')
     else:
         payload = {
+            'Nomor Aset' : device_number,
             'Device':device_name,
             'PIC' : pic_name,
             'Jenis Device': device_type,
