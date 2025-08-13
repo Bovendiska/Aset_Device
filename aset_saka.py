@@ -13,7 +13,7 @@ SCOPE =[
 
 def submit_gsheet(data):
     try:
-        creds = {
+        creds_dict = {
           "type": "service_account",
           "project_id": "streamlit-aset",
           "private_key_id": "ab7bbf62e1454c17448573afc1efd4736f896803",
@@ -28,8 +28,7 @@ def submit_gsheet(data):
         }
 
         # Memuat credentials dari st.secrets
-        creds_dict = st.secrets['gcp_service_account']
-        creds = Credentials.from_service_account_info(creds_dict, scopes =SCOPE)
+        creds = Credentials.from_service_account_info(creds_dict, scopes = SCOPE)
 
         # Otorisasi gspead
         client = gspread.authorize(creds)
@@ -99,4 +98,5 @@ if submit:
             st.success(message)
         else:
             st.error(message)
+
 
