@@ -31,10 +31,11 @@ def submit_gsheet(data):
             data.get('Nomor Aset',''),
             data.get('Device',''),
             data.get('PIC',''),
-            data.get('Jenis Device',''),
-            data.get('Status',''),
-            data.get('Letak Aset',''),
-            data.get('Keterangan','')
+            data.get('Nomor Telpon PIC'),
+            data.get('Jenis Device Lama',''),
+            data.get('Jenis Device Baru',''),
+            data.get('Pemegang Device Lama',''),
+            data.get('Pemegang Device Baru','')
         ]
 
         worksheet.append_row(new_row)
@@ -45,25 +46,21 @@ def submit_gsheet(data):
     
 st.set_page_config(layout = 'centered', page_title='Form Aset IT')
 
-st.title('📝 Formulir Input Aset IT')
-st.write('Untuk mengetahui detail aset serta kebedaan aset device.')
+st.title('📝 Formulir Input device IT')
+st.write('Untuk mengetahui transaksi device lama dan baru')
 st.markdown("-------")
 
 
 st.header('Detail Aset')
 
-device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device = SFL/../..')
+device_number = st.text_input('Nomor Device (Device Lama)', help = 'Dilihat pada barcode Aset Device = SFL/../..')
 device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
-pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
-device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
-status = st.selectbox('Status Aset',['Sudah Diambil IT','Belum Diambil IT'], key = 'status_aset')
-
-
-if st.session_state.status_aset == 'Belum Diambil IT':
-    letak_aset = st.text_input('Dimana Letak Aset Tersebut?')
-else:
-    letak_aset = st.text_input('Di Terima oleh siapa?')
-    
+pic_name = st.text_input('Nama PIC*', help = 'Nama Pengisi Form')
+pic_num = st.text_input('Nomor PIC*', help = 'Nama Pengisi Form')
+new_type = st.selectbox('Jenis Device Lama', ['PC','Notebook'])
+old_type = st.selectbox('Jenis Device Baru', ['PC','Notebook'])
+own_dev_old = st.text_input('Pemegang Device Lama')
+own_dev_new = st.text_input('Pemegang Device Baru')  
 keterangan = st.text_area("Keterangan Tambahan")
 
 with st.form('asset_form', clear_on_submit = True):
@@ -78,10 +75,11 @@ if submit:
             'Nomor Aset' : device_number,
             'Device':device_name,
             'PIC' : pic_name,
-            'Jenis Device': device_type,
-            'Status': status,
-            'Letak Aset' : letak_aset,
-            'Keterangan': keterangan
+            'Nomor Telpon PIC': pic_num,
+            'Jenis Device Lama':old_type,
+            'Jenis Device Baru':new_type,
+            'Pemegang Device Lama' : own_dev_old,
+            'Pemegang Device Baru': own_dev_new
         }
         with st.spinner('Sedang Mengirimkan data ke Google Sheets....'):
             success, message = submit_gsheet(payload)
