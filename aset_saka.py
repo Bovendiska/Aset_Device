@@ -68,7 +68,7 @@ with st.form('asset_form', clear_on_submit = True):
 
 if submit:
 
-    if not device_name or not pic_name:
+    if not device_name or not pic_name or not device_number or not pic_num:
         st.warning('Mohon isi field yang ditandai (*)')
     else:
         payload = {
