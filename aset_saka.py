@@ -51,7 +51,7 @@ st.markdown("-------")
 st.header('Detail Aset')
 
 device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
-pic_name = st.text_input('Nama PIC*')
+pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
 device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
 status = st.selectbox('Status Aset',['Sudah Diambil IT','Belum Diambil IT'], key = 'status_aset')
 
