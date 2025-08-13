@@ -49,21 +49,24 @@ st.title('📝 Formulir Input Aset IT')
 st.write('Untuk mengetahui detail aset serta kebedaan aset device.')
 st.markdown("-------")
 
-with st.form('asset_form', clear_on_submit=True):
-    st.header('Detail Aset')
 
-    device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device = SFL/../..')
-    device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
-    pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
-    device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
-    status = st.selectbox('Status Aset',['Sudah Diambil IT','Belum Diambil IT'], key = 'status_aset')
+st.header('Detail Aset')
 
-    if st.session_state.status_aset == 'Belum Diambil IT':
-        letak_aset = st.text_input('Dimana Letak Aset Tersebut?')
-    else:
-        letak_aset = st.text_input('Di Terima oleh siapa?')
-        
-    keterangan = st.text_area("Keterangan Tambahan")
+device_number = st.text_input('Nomor Aset', help = 'Dilihat pada barcode Aset Device = SFL/../..')
+device_name = st.text_input('Jenis Device*', help ='Contoh : Dell Latitude 3450')
+pic_name = st.text_input('Nama PIC*', help = 'Nama Penanggung Jawab')
+device_type = st.selectbox('Tipe Device', ['PC','Notebook'])
+status = st.selectbox('Status Aset',['Sudah Diambil IT','Belum Diambil IT'], key = 'status_aset')
+
+
+if st.session_state.status_aset == 'Belum Diambil IT':
+    letak_aset = st.text_input('Dimana Letak Aset Tersebut?')
+else:
+    letak_aset = st.text_input('Di Terima oleh siapa?')
+    
+keterangan = st.text_area("Keterangan Tambahan")
+
+with st.form('asset_form', clear_on_submit = True):
     submit = st.form_submit_button('Simpan Aset ke Google Sheets')
 
 if submit:
@@ -76,7 +79,7 @@ if submit:
             'Device':device_name,
             'PIC' : pic_name,
             'Jenis Device': device_type,
-            'Status': st.session_state.status_aset,
+            'Status': status,
             'Letak Aset' : letak_aset,
             'Keterangan': keterangan
         }
