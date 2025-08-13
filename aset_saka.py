@@ -14,8 +14,10 @@ SCOPE =[
 def submit_gsheet(data):
     try:
         # Memuat credentials dari st.secrets
-        creds_dict = st.secrets["gcp_service_account"].to_dict()
-
+        creds = Credentials.from_service_account_info(
+            st.secrets.to_dict(), # Mengubah semua secrets menjadi dictionary
+            scopes=SCOPE
+        )
         creds = Credentials.from_service_account_info(creds_dict, scopes =SCOPE)
 
         # Otorisasi gspead
